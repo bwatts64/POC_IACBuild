@@ -1,0 +1,40 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json",
+    "contentVersion": "1.0.0.0",
+  "parameters": {
+    "sourceVNetID": {
+      "type": "string",
+      "defaultValue": "vNet1"
+    },
+    "destVNetID": {
+      "type": "string",
+      "defaultValue": "vNet2"
+    },
+    "peeringName": {
+      "type": "string",
+      "defaultValue": "vNet1tovNet2"
+    }
+
+  },
+    "variables": {
+  },
+  "resources": [
+    {
+      "apiVersion": "2018-08-01",
+      "location": "[resourceGroup().location]",
+      "name": "[parameters('peeringName')]",
+      "type": "Microsoft.Network/virtualNetworks/virtualNetworkPeerings",
+      "vnetResourceId": "[parameters('sourceVNetID')]",
+      "properties": {
+        "allowVirtualNetworkAccess": "true",
+        "allowForwardedTraffic": "false",
+        "allowGatewayTransit": "false",
+        "useRemoteGateways": "false",
+        "remoteVirtualNetwork": {
+          "id": "[parameters('destVNetID')]"
+        }
+      }
+
+    } 
+  ]
+    }
