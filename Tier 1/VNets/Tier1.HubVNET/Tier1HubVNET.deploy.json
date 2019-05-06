@@ -81,7 +81,7 @@
     },
     "managementSubnetId": {
       "type": "string",
-      "value": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'), if(equals(parameters('hubNetwork'), 'Yes'), 'GatewaySubnet', parameters('managementSubnetName')))]"
+      "value": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'), 'GatewaySubnet')]"
     },
     "workloadSubnetId": {
       "type": "string",
