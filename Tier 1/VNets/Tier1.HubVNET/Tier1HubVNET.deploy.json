@@ -33,16 +33,6 @@
       },
       "defaultValue": "10.0.0.0/24"
     },
-    "managementSubnetName": {
-      "type": "string",
-      "defaultValue": "managementSubnet"
-    },
-    "managementNSGID": {
-      "type": "string",
-      "metadata": {
-        "description": "Network Security Group to be attached to DMZ Subnet"
-      }
-    },
     "workloadNSGID": {
       "type": "string",
       "metadata": {
@@ -66,12 +56,9 @@
         },
         "subnets": [
           {
-            "name": "[parameters('managementSubnetName')]",
+            "name": "GatewaySubnet",
             "properties": {
-              "addressPrefix": "[parameters('managementSubnetRange')]",
-              "networkSecurityGroup": {
-                "id": "[parameters('managementNSGID')]"
-              }
+              "addressPrefix": "[parameters('managementSubnetRange')]"
             }
           },
           {
