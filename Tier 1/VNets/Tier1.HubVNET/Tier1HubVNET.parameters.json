@@ -8,9 +8,6 @@
     "virtualNetworkAddressRange": {
       "value": "10.0.0.0/16"
     },
-    "managementSubnetName": {
-      "value": "management-SN"
-    },
     "workloadSubnetName": {
       "value": "worload-SN"
     },
@@ -19,9 +16,6 @@
     },
     "managementSubnetRange": {
       "value": "10.0.1.0/24"
-    },
-    "managementNSGID": {
-      "value": "na"
     },
     "workloadNSGID": {
       "value": "na"
