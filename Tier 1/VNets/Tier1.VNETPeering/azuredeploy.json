@@ -21,8 +21,9 @@
   "resources": [
     {
       "apiVersion": "2018-08-01",
-      "location": "[resourceGroup().location]",
       "name": "[concat(parameters('sourceVNetID'),'/', parameters('peeringName'))]",
+      "type": "Microsoft.Network/virtualNetworks/virtualNetworkPeerings",
+      "location": "[resourceGroup().location]",
       "properties": {
         "allowVirtualNetworkAccess": "true",
         "allowForwardedTraffic": "false",
