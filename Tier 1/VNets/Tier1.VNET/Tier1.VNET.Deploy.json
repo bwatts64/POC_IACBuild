@@ -1,0 +1,111 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "virtualNetworkName": {
+      "type": "string",
+      "defaultValue": "RDS-VNET",
+      "minLength": 1,
+      "maxLength": 35
+    },
+    "virtualNetworkAddressRange": {
+      "type": "string",
+      "metadata": {
+        "description": "The address range of the new VNET in CIDR format"
+      },
+      "defaultValue": "10.0.0.0/16"
+    },
+    "hubNetwork": {
+      "type": "string",
+      "allowedValues": [
+        "Yes",
+        "No"
+      ]
+    },
+    "managementSubnetRange": {
+      "type": "string",
+      "metadata": {
+        "description": "The address range of the subnet created in the new VNET"
+      },
+      "defaultValue": "10.0.0.0/24"
+    },
+    "workloadSubnetName": {
+      "type": "string",
+      "defaultValue": "workloadSubnet"
+    },
+    "workloadSubnetRange": {
+      "type": "string",
+      "metadata": {
+        "description": "The address range of the subnet created in the new VNET"
+      },
+      "defaultValue": "10.0.0.0/24"
+    },
+    "managementSubnetName": {
+      "type": "string",
+      "defaultValue": "managementSubnet"
+    },
+    "managementNSGID": {
+      "type": "string",
+      "metadata": {
+        "description": "Network Security Group to be attached to DMZ Subnet"
+      }
+    },
+    "workloadNSGID": {
+      "type": "string",
+      "metadata": {
+        "description": "Network Security Group to be attached to Internal Subnet"
+      }
+    }
+  },
+  "variables": {
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Network/virtualNetworks",
+      "name": "[parameters('virtualNetworkName')]",
+      "apiVersion": "2018-12-01",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": [
+            "[parameters('virtualNetworkAddressRange')]"
+          ]
+        },
+        "subnets": [
+          {
+            "name": "[if(equals(parameters('hubNetwork'), 'Yes'), 'GatewaySubnet', parameters('managementSubnetName')]",
+            "properties": {
+              "addressPrefix": "[parameters('managementSubnetRange')]",
+              "networkSecurityGroup": {
+                "id": "[if(equals(parameters('hubNetwork'), 'Yes'), json('null'), parameters('managementNSGID'))]"
+              }
+            }
+          },
+          {
+            "name": "[parameters('workloadSubnetName')]",
+            "properties": {
+              "addressPrefix": "[parameters('workloadSubnetRange')]",
+              "networkSecurityGroup": {
+                "id": "[parameters('workloadNSGID')]"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "outputs": {
+    "vnetid": {
+      "type": "string",
+      "value": "[resourceId(resourceGroup().name,'Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]"
+    },
+    "managementSubnetId": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'), if(equals(parameters('hubNetwork'), 'Yes'), 'GatewaySubnet', parameters('managementSubnetName')))]"
+    },
+    "workloadSubnetId": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'), parameters('workloadSubnetName'))]"
+    }
+  }
+}

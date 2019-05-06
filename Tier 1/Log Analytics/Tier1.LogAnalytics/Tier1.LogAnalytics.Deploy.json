@@ -1,0 +1,46 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "name": {
+      "type": "string"
+    },
+    "sku": {
+      "type": "string"
+    },
+    "searchVersion": {
+      "type": "int"
+    }
+  },
+  "variables": {
+    "workspaceResourceId": "[resourceId(resourceGroup().name,'Microsoft.OperationalInsights/workspaces', parameters('name'))]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.OperationalInsights/workspaces",
+      "name": "[parameters('name')]",
+      "apiVersion": "2017-04-26-preview",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "sku": {
+          "name": "[parameters('sku')]"
+        },
+        "features": {
+          "searchVersion": "[parameters('searchVersion')]"
+        }
+      }
+    }
+  ],
+  "outputs": {
+    "listKeys": {
+      "value": "[listKeys(variables('workspaceResourceId'), '2015-11-01-preview')]",
+      "type": "object"
+    },
+    "customerId": {
+      "value": "[reference(variables('workspaceResourceId'), '2015-11-01-preview').customerId]",
+      "type": "string"
+    }
+  }
+
+}
+

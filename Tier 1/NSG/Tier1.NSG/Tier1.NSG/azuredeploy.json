@@ -1,0 +1,45 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "apiProfile": "2018-03-01-hybrid",
+  "parameters": {
+    "nsgName": {
+      "type": "string",
+      "defaultValue": "[tolower(concat('vmnsg',resourceGroup().name))]",
+      "minLength": 1
+    }
+  },
+  "variables": {
+    "nsgID": "[resourceId(resourceGroup().name,'Microsoft.Network/networkSecurityGroups',parameters('nsgName'))]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Network/networkSecurityGroups",
+      "name": "[parameters('nsgName')]",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "securityRules": [
+          {
+            "name": "rule1",
+            "properties": {
+              "protocol": "*",
+              "sourcePortRange": "*",
+              "destinationPortRange": "*",
+              "sourceAddressPrefix": "*",
+              "destinationAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 101,
+              "direction": "Inbound"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "outputs": {
+    "nsgID": {
+      "type": "string",
+      "value": "[variables('nsgID')]"
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "StorageAccountType": {
+      "type": "string",
+      "defaultValue": "Standard_LRS",
+      "allowedValues": [
+        "Standard_LRS",
+        "Standard_ZRS",
+        "Standard_GRS",
+        "Standard_RAGRS",
+        "Premium_LRS"
+      ]
+    }
+  },
+  "variables": {
+    "StorageAccountName": "[concat('rdssa', uniqueString(resourceGroup().id))]",
+    "apiVersion": "[providers('Microsoft.Storage', 'storageAccounts').apiVersions[0]]"
+  },
+  "resources": [
+    {
+      "name": "[variables('StorageAccountName')]",
+      "type": "Microsoft.Storage/storageAccounts",
+      "location": "[resourceGroup().location]",
+      "apiVersion": "[variables('apiVersion')]",
+      "sku": {
+        "name": "[parameters('StorageAccountType')]"
+      },
+      "dependsOn": [],
+      "tags": {
+        "displayName": "StorageAccount"
+      },
+      "kind": "Storage"
+    }
+  ],
+  "outputs": {
+    "storageAccountKey": {
+      "type": "string",
+      "value": "[first(listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('StorageAccountName')),'2018-07-01').keys).value]"
+    },
+    "storageAccountName": {
+      "type": "string",
+      "value": "[variables('StorageAccountName')]"
+    }
+  }
+}

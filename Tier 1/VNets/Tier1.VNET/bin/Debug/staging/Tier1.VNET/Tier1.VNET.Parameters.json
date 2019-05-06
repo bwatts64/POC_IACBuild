@@ -1,0 +1,30 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "virtualNetworkName": {
+      "value": "POC-VNET"
+    },
+    "virtualNetworkAddressRange": {
+      "value": "10.0.0.0/16"
+    },
+    "dmzSubnetName": {
+      "value": "dmz-SN"
+    },
+    "dmzSubnetRange": {
+      "value": "10.0.0.0/24"
+    },
+    "internalSubnetName": {
+      "value": "internal-SN"
+    },
+    "internalSubnetRange": {
+      "value": "10.0.1.0/24"
+    },
+    "clusterSubnetName": {
+      "value": "cluster-SN"
+    },
+    "clusterSubnetRange": {
+      "value": "10.0.2.0/24"
+    }
+  }
+}
