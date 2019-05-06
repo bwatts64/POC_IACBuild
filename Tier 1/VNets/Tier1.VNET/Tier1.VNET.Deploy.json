@@ -73,7 +73,7 @@
         },
         "subnets": [
           {
-            "name": "[if(equals(parameters('hubNetwork'), 'Yes'), 'GatewaySubnet', parameters('managementSubnetName')]",
+            "name": "[if(equals(parameters('hubNetwork'), 'Yes'), 'GatewaySubnet', parameters('managementSubnetName'))]",
             "properties": {
               "addressPrefix": "[parameters('managementSubnetRange')]",
               "networkSecurityGroup": {
