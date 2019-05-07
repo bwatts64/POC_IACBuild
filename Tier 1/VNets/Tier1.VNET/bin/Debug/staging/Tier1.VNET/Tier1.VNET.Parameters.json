@@ -8,23 +8,23 @@
     "virtualNetworkAddressRange": {
       "value": "10.0.0.0/16"
     },
-    "dmzSubnetName": {
-      "value": "dmz-SN"
+    "managementSubnetName": {
+      "value": "management-SN"
     },
-    "dmzSubnetRange": {
+    "workloadSubnetName": {
+      "value": "worload-SN"
+    },
+    "workloadSubnetRange": {
       "value": "10.0.0.0/24"
     },
-    "internalSubnetName": {
-      "value": "internal-SN"
-    },
-    "internalSubnetRange": {
+    "managementSubnetRange": {
       "value": "10.0.1.0/24"
     },
-    "clusterSubnetName": {
-      "value": "cluster-SN"
+    "managementNSGID": {
+      "value": "na"
     },
-    "clusterSubnetRange": {
-      "value": "10.0.2.0/24"
+    "workloadNSGID": {
+      "value": "na"
     }
   }
 }

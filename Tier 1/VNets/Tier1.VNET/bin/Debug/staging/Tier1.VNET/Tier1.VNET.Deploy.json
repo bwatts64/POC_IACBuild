@@ -15,45 +15,39 @@
       },
       "defaultValue": "10.0.0.0/16"
     },
-
-    "dmzSubnetName": {
-      "type": "string",
-      "metadata": {
-        "description": "The name of the subnet created in the new VNET"
-      }
-    },
-    "dmzSubnetRange": {
+    "managementSubnetRange": {
       "type": "string",
       "metadata": {
         "description": "The address range of the subnet created in the new VNET"
       },
       "defaultValue": "10.0.0.0/24"
     },
-    "internalSubnetName": {
+    "workloadSubnetName": {
       "type": "string",
-      "metadata": {
-        "description": "The name of the subnet created in the new VNET"
-      }
+      "defaultValue": "workloadSubnet"
     },
-    "internalSubnetRange": {
+    "workloadSubnetRange": {
       "type": "string",
       "metadata": {
         "description": "The address range of the subnet created in the new VNET"
       },
       "defaultValue": "10.0.0.0/24"
     },
-    "clusterSubnetName": {
+    "managementSubnetName": {
+      "type": "string",
+      "defaultValue": "managementSubnet"
+    },
+    "managementNSGID": {
       "type": "string",
       "metadata": {
-        "description": "The name of the subnet created in the new VNET"
+        "description": "Network Security Group to be attached to DMZ Subnet"
       }
     },
-    "clusterSubnetRange": {
+    "workloadNSGID": {
       "type": "string",
       "metadata": {
-        "description": "The address range of the subnet created in the new VNET"
-      },
-      "defaultValue": "10.0.0.0/24"
+        "description": "Network Security Group to be attached to Internal Subnet"
+      }
     }
   },
   "variables": {
@@ -72,21 +66,21 @@
         },
         "subnets": [
           {
-            "name": "[parameters('dmzSubnetName')]",
+            "name": "[parameters('managementSubnetName')]",
             "properties": {
-              "addressPrefix": "[parameters('dmzSubnetRange')]"
+              "addressPrefix": "[parameters('managementSubnetRange')]",
+              "networkSecurityGroup": {
+                "id": "[parameters('managementNSGID')]"
+              }
             }
           },
           {
-            "name": "[parameters('internalSubnetName')]",
+            "name": "[parameters('workloadSubnetName')]",
             "properties": {
-              "addressPrefix": "[parameters('internalSubnetRange')]"
-            }
-          },
-          {
-            "name": "[parameters('clusterSubnetName')]",
-            "properties": {
-              "addressPrefix": "[parameters('clusterSubnetRange')]"
+              "addressPrefix": "[parameters('workloadSubnetRange')]",
+              "networkSecurityGroup": {
+                "id": "[parameters('workloadNSGID')]"
+              }
             }
           }
         ]
@@ -94,5 +88,21 @@
     }
   ],
   "outputs": {
+    "vnetid": {
+      "type": "string",
+      "value": "[resourceId(resourceGroup().name,'Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]"
+    },
+    "vnetname": {
+      "type": "string",
+      "value": "[parameters('virtualNetworkName')]"
+    },
+    "managementSubnetId": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'), parameters('managementSubnetName'))]"
+    },
+    "workloadSubnetId": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'), parameters('workloadSubnetName'))]"
+    }
   }
 }

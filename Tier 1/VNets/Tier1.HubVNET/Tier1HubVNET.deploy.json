@@ -79,6 +79,10 @@
       "type": "string",
       "value": "[resourceId(resourceGroup().name,'Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]"
     },
+    "vnetname": {
+      "type": "string",
+      "value": "[parameters('virtualNetworkName')]"
+    },
     "managementSubnetId": {
       "type": "string",
       "value": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'), 'GatewaySubnet')]"
