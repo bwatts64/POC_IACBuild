@@ -2,6 +2,9 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json",
     "contentVersion": "1.0.0.0",
   "parameters": {
+    "sourceVNetName": {
+      "type": "string"
+    },
     "sourceVNetID": {
       "type": "string",
       "defaultValue": "vNet1"
@@ -21,7 +24,7 @@
   "resources": [
     {
       "apiVersion": "2018-08-01",
-      "name": "[concat(parameters('sourceVNetID'),parameters('peeringName'))]",
+      "name": "[concat(parameters('sourceVNetName'),'/',parameters('peeringName'))]",
       "type": "Microsoft.Network/virtualNetworks/virtualNetworkPeerings",
       "location": "[resourceGroup().location]",
       "properties": {

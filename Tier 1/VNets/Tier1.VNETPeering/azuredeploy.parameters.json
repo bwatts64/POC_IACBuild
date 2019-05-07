@@ -2,5 +2,17 @@
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
+    "sourceVNetName": {
+      "value": "VNET1"
+    },
+    "sourceVNetID": {
+      "value": "vNet1"
+    },
+    "destVNetID": {
+      "value": "vNet2"
+    },
+    "peeringName": {
+      "value": "vNet1tovNet2"
+    }
   }
 }
