@@ -37,6 +37,13 @@
         "description": "VM name prefix"
       }
     },
+      "ipPrefix": {
+        "type": "string",
+        "defaultValue": "10.1.0.",
+        "metadata": {
+          "description": "Start of IP Address"
+        }
+    },
     "osImagePublisher": {
       "type": "string",
       "defaultValue": "MicrosoftWindowsServer",
@@ -115,7 +122,7 @@
             "name": "ipconfig1",
             "properties": {
               "privateIPAllocationMethod": "Static",
-              "PrivateIpAddress": "[concat('10.0.1.', copyindex(4))]",
+              "PrivateIpAddress": "[concat(parameters('ipPrefix'), copyindex(4))]",
               "subnet": {
                 "id": "[parameters('subnetid')]"
               }

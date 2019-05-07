@@ -8,6 +8,9 @@
     "adminPassword": {
       "value": "Alabama01!!"
     },
+    "ipPrefix": {
+      "value": "10.1.0."
+    },
     "numberOfInstances": {
       "value": 2
     },
