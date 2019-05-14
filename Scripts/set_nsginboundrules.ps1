@@ -1,23 +1,23 @@
 ﻿param(
-    [string]$nsgName,
-    [string]$ruleName,
-    [string]$ruleDescription,
-    [string]$access,
-    [string]$protocol,
-    [string]$direction,
-    [int]$priority,
-    [string]$sourceAddressPrefix,
-    [string]$sourcePortRange,
-    [string]$destinationAddressPrefix,
-    [string]$destinationPortRange,
-    [string]$rgname
+    [string]$nsgName="hubworkload_nsg",
+    [string]$ruleName="rdp-rule",
+    [string]$ruleDescription="Allow RDP from Internet",
+    [string]$access="Allow",
+    [string]$protocol="Tcp",
+    [string]$direction="Inbound",
+    [int]$priority=100,
+    [string]$sourceAddressPrefix="Internet",
+    [string]$sourcePortRange="*",
+    [string]$destinationAddressPrefix="*",
+    [string]$destinationPortRange="3389",
+    [string]$rgname="IaC_HubSpoke"
 )
 
-$nsg = Get-AzureRMNetworkSecurityGroup -Name $nsgName -ResourceGroupName $rgname
+$nsg = Get-AzNetworkSecurityGroup -Name $nsgName -ResourceGroupName $rgname
 
-$nsg | Add-AzureRMNetworkSecurityRuleConfig -Name $ruleName -Description $ruleDescription `
+$nsg | Add-AzNetworkSecurityRuleConfig -Name $ruleName -Description $ruleDescription `
     -Access $access -Protocol $protocol -Direction $direction -Priority $priority -SourceAddressPrefix $sourceAddressPrefix `
     -SourcePortRange $sourcePortRange -DestinationAddressPrefix $destinationPortRange -DestinationPortRange $destinationPortRange
 
 
-$nsg | Set-AzureRMNetworkSecurityGroup
+$nsg | Set-AzNetworkSecurityGroup
