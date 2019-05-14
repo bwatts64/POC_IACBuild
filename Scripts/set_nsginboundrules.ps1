@@ -13,7 +13,7 @@
     [string]$rgname
 )
 
-$nsg = Get-AzureRMNetworkSecurityGroup -Name LABVM-nsg -ResourceGroupName $rgname
+$nsg = Get-AzureRMNetworkSecurityGroup -Name $nsgName -ResourceGroupName $rgname
 
 $nsg | Add-AzureRMNetworkSecurityRuleConfig -Name $ruleName -Description $ruleDescription `
     -Access $access -Protocol $protocol -Direction $direction -Priority $priority -SourceAddressPrefix $sourceAddressPrefix `
