@@ -9,10 +9,11 @@
     [string]$sourceAddressPrefix,
     [string]$sourcePortRange,
     [string]$destinationAddressPrefix,
-    [string]$destinationPortRange
+    [string]$destinationPortRange,
+    [string]$rgname
 )
 
-$nsg = Get-AzureRMNetworkSecurityGroup -Name LABVM-nsg
+$nsg = Get-AzureRMNetworkSecurityGroup -Name LABVM-nsg -ResourceGroupName $rgname
 
 $nsg | Add-AzureRMNetworkSecurityRuleConfig -Name $ruleName -Description $ruleDescription `
     -Access $access -Protocol $protocol -Direction $direction -Priority $priority -SourceAddressPrefix $sourceAddressPrefix `
