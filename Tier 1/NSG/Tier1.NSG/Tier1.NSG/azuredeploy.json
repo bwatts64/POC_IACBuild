@@ -17,6 +17,9 @@
       "type": "Microsoft.Network/networkSecurityGroups",
       "name": "[parameters('nsgName')]",
       "location": "[resourceGroup().location]",
+      "properties": {
+ 
+      }
     }
   ],
   "outputs": {
