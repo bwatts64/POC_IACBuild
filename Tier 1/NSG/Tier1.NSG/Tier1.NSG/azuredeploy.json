@@ -40,6 +40,10 @@
     "nsgID": {
       "type": "string",
       "value": "[variables('nsgID')]"
+    },
+    "nsgName": {
+      "type": "string",
+      "value": "[parameters('nsgName')]"
     }
   }
 }
