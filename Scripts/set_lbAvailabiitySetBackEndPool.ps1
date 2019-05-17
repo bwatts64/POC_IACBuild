@@ -12,7 +12,9 @@ Param(
     [string]$loadBalancerName,
     [string]$availabilitySetName,
     [Parameter(Mandatory = $True)]
-    [string]$backendPoolName
+    [string]$backendPoolName,
+    [Parameter(Mandatory = $True)]
+    [string]$resourceGroupName
 )
 
 $ErrorActionPreference = "Stop"
