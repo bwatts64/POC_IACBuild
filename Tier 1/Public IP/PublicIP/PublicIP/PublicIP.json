@@ -24,7 +24,7 @@
     },
     "IPVersion": {
       "type": "string",
-      "minValue": 1,
+      "minLength": 1,
       "allowedValues": [
         "IPv4",
         "IPv6"
