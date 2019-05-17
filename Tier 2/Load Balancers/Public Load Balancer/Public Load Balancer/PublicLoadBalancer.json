@@ -13,8 +13,7 @@
       ]
     },
     "publicIPResourceID": {
-      "type": "string",
-      "minValue": 1
+      "type": "string"
     }
   },
   "variables": {
