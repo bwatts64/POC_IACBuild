@@ -7,7 +7,6 @@
     },
     "sku": {
       "type": "string",
-      "minValue": 1,
       "allowedValues": [
         "Basic",
         "Standard"
