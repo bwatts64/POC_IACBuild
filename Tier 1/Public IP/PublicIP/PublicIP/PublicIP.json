@@ -1,0 +1,54 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "publicIPAddressName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sku": {
+      "type": "string",
+      "minLength": 1,
+      "allowedValues": [
+        "Basic",
+        "Standard"
+      ]
+    },
+    "AllocationMethod": {
+      "type": "string",
+      "minValue": 1,
+      "allowedValues": [
+        "Static",
+        "Dynamic"
+      ]
+    },
+    "IPVersion": {
+      "type": "string",
+      "minValue": 1,
+      "allowedValues": [
+        "IPv4",
+        "IPv6"
+      ]
+    }
+  },
+  "variables": {
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Network/publicIPAddresses",
+      "apiVersion": "2018-08-01",
+      "name": "[parameters('publicIPAddressName')]",
+      "location": "[resourceGroup().location]",
+      "tags": {},
+      "sku": {
+        "name": "[parameters('sku')]"
+      },
+      "properties": {
+        "publicIPAllocationMethod": "[parameters('AllocationMethod')]",
+        "publicIPAddressVersion": "[parameters('IPVersion')]"
+      }
+    }
+  ],
+  "outputs": {
+  }
+}

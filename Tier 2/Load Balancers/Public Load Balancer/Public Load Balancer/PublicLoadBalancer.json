@@ -1,0 +1,52 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "LB_Name": {
+      "type": "string",
+      "minValue": 1
+    },
+    "sku": {
+      "type": "string",
+      "minValue": 1,
+      "allowedValues": [
+        "Basic",
+        "Standard"
+      ]
+    },
+    "publicIPResourceID": {
+      "type": "string",
+      "minValue": 1
+    }
+  },
+  "variables": {
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Network/loadBalancers",
+      "apiVersion": "2018-08-01",
+      "name": "[parameters('LB_Name')]",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [
+      ],
+      "tags": {},
+      "sku": {
+        "name": "[parameters('sku')]"
+      },
+      "properties": {
+        "frontendIPConfigurations": [
+          {
+            "name": "LoadBalancerFrontEnd",
+            "properties": {
+              "publicIPAddress": {
+                "id": "[parameters('publicIPResourceID']"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "outputs": {
+  }
+}
