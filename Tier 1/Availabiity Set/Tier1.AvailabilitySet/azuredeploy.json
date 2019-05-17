@@ -30,6 +30,10 @@
     "asid": {
       "type": "string",
       "value": "[resourceId('Microsoft.Compute/availabilitySets',parameters('availabilitySetName'))]"
+    },
+    "name": {
+      "type": "string",
+      "value": "[parameters('availabilitySetName')]"
     }
     
   }
