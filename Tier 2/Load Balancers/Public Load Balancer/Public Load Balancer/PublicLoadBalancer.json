@@ -40,6 +40,11 @@
               }
             }
           }
+        ],
+        "backendAddressPools": [
+          {
+            "name": "LoadBalancerBackEnd"
+          }
         ]
       }
     }

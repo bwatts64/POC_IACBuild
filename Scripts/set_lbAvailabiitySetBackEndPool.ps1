@@ -36,16 +36,14 @@ try {
         -LoadBalancer $loadBalancer
 }
 catch {
-    #Write-Warning "no Backend Pool found with the name $backendPoolName in the load balancer with the name $loadBalancerName"
+    Write-Error "no Backend Pool found with the name $backendPoolName in the load balancer with the name $loadBalancerName"
     Return
 }
 
 try {
     $AvSet = Get-AzAvailabilitySet `
         -Name $availabilitySetName `
-        -ResourceGroupName (Get-AzResource | Where-Object {
-            ($_.Name -eq $availabilitySetName) -and `
-            ($_.ResourceType -eq "Microsoft.Compute/AvailabilitySets")}).ResourceGroupName
+        -ResourceGroupName $resourceGroupName
 }
 catch {
     Write-Error "no AvailabilitySet found with the name $availabilitySetName in resource group $availabilitySetResourceGroup"
