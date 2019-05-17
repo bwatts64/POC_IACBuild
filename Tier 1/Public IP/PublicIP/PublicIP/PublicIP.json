@@ -16,7 +16,7 @@
     },
     "AllocationMethod": {
       "type": "string",
-      "minValue": 1,
+      "minLength": 1,
       "allowedValues": [
         "Static",
         "Dynamic"
