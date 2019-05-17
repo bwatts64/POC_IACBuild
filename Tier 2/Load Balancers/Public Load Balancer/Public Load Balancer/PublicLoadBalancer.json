@@ -36,7 +36,7 @@
             "name": "LoadBalancerFrontEnd",
             "properties": {
               "publicIPAddress": {
-                "id": "[parameters('publicIPResourceID']"
+                "id": "[parameters('publicIPResourceID')]"
               }
             }
           }
