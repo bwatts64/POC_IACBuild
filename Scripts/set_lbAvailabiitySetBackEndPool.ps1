@@ -20,7 +20,7 @@ Param(
 $ErrorActionPreference = "Stop"
 
 Try {
-    $loadBalancer = Get-AzureRmLoadBalancer `
+    $loadBalancer = Get-AzLoadBalancer `
         -Name $loadBalancerName `
         -ResourceGroupName $resourceGroupName `
         -ErrorAction Stop
@@ -31,7 +31,7 @@ Catch {
 }
 
 try {
-    $backendPool = Get-AzureRmLoadBalancerBackendAddressPoolConfig `
+    $backendPool = Get-AzLoadBalancerBackendAddressPoolConfig `
         -Name $backendPoolName `
         -LoadBalancer $loadBalancer
 }
@@ -41,9 +41,9 @@ catch {
 }
 
 try {
-    $AvSet = Get-AzureRmAvailabilitySet `
+    $AvSet = Get-AzAvailabilitySet `
         -Name $availabilitySetName `
-        -ResourceGroupName (Get-AzureRmResource | Where-Object {
+        -ResourceGroupName (Get-AzResource | Where-Object {
             ($_.Name -eq $availabilitySetName) -and `
             ($_.ResourceType -eq "Microsoft.Compute/AvailabilitySets")}).ResourceGroupName
 }
@@ -54,10 +54,10 @@ catch {
 
 ForEach ($id in $avSet.VirtualMachinesReferences.id) {
 
-    $nic = Get-AzureRmNetworkInterface | Where-Object {($_.VirtualMachine.id).ToLower() -eq ($id).ToLower()}
+    $nic = Get-AzNetworkInterface | Where-Object {($_.VirtualMachine.id).ToLower() -eq ($id).ToLower()}
     $nic.IpConfigurations[0].LoadBalancerBackendAddressPools = $backendPool
 
-    Set-AzureRmNetworkInterface -NetworkInterface $nic -AsJob    
+    Set-AzNetworkInterface -NetworkInterface $nic -AsJob    
 }    
 
 If ($ErrorMessages) {
