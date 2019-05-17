@@ -6,7 +6,7 @@
       "value": "test-lb"
     },
     "sku": {
-      "values": "Basic"
+      "value": "Basic"
     },
     "publicIPResourceID": {
       "value": "Microsoft.Network/publicIPAddresses/example"
