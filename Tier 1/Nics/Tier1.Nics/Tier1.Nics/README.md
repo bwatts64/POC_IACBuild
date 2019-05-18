@@ -3,7 +3,7 @@ This template deploys a Network Interface to a Resource Group in Azure. This tem
 
 [VM] ("./Tier 2/Virtual Machines/Tier2.VM/readme.md")
 
-[VM in Availability Set] (./../../../../Tier 2/Virtual Machines/Tier2.VMinAvailabilitySet/readme.md)
+[VM in Availability Set] (https://dev.azure.com/Security-Monitoring/_git/IaC_HubSpokeNetwork?path=%2FTier%202%2FVirtual%20Machines%2FTier2.VMinAvailabilitySet%2FREADME.md&version=GBmaster)
 
 The deployment of this template is dependant of the following Network templates being deployed first
 
