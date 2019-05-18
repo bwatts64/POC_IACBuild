@@ -53,6 +53,10 @@
     "PIPResourceID": {
       "type": "string",
       "value": "[resourceId(resourceGroup().name,'Microsoft.Network/publicIPAddresses',parameters('publicIPAddressName'))]"
+    },
+    "ipAddress": {
+      "type": "string",
+      "value": "[reference(parameters('publicIPAddressName')).IpAddress]"
     }
   }
 }

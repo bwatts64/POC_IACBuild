@@ -10,6 +10,9 @@
     },
     "publicIPResourceID": {
       "value": "/subscriptions/<sub>/resourceGroups/IaC_HubSpoke/providers/Microsoft.Network/publicIPAddresses/example_PIP"
+    },
+    "backendAddressPoolName": {
+      "value": "BackendAddressPool"
     }
   }
 }

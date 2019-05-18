@@ -14,6 +14,9 @@
     },
     "publicIPResourceID": {
       "type": "string"
+    },
+    "backendAddressPoolName": {
+      "type": "string"
     }
   },
   "variables": {
@@ -43,7 +46,7 @@
         ],
         "backendAddressPools": [
           {
-            "name": "LoadBalancerBackEnd"
+            "name": "[parameters('backendAddressPoolName')]"
           }
         ]
       }
@@ -53,6 +56,10 @@
     "name": {
       "type": "string",
       "value": "[parameters('LBName')]"
+    },
+    "backendAddressPoolName": {
+      "type": "string",
+      "value": "[parameters('backendAddressPoolName')]"
     }
   }
 }
