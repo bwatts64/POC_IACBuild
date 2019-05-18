@@ -54,8 +54,9 @@ ForEach ($id in $avSet.VirtualMachinesReferences.id) {
 
     $nic = Get-AzNetworkInterface | Where-Object {($_.VirtualMachine.id).ToLower() -eq ($id).ToLower()}
     $nic.IpConfigurations[0].LoadBalancerBackendAddressPools = $backendPool
-
-    Set-AzNetworkInterface -NetworkInterface $nic -AsJob    
+    Write-Host $nic.IpConfigurations[0]
+    Set-AzNetworkInterface -NetworkInterface $nic -AsJob 
+    Start-Sleep -Seconds 5   
 }    
 
 If ($ErrorMessages) {
