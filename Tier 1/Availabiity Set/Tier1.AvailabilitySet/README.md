@@ -23,12 +23,13 @@ This template will output the following information to be used by other template
 
 5) Point to the template file located 
 
-- $(System.DefaultWorkingDirectory)/_Hub and Spoke/drop/Tier1.AvailabilitySet/azuredeploy.json
+	$(System.DefaultWorkingDirectory)/_Hub and Spoke/drop/Tier1.AvailabilitySet/azuredeploy.json
 
 6) Point to the parameter file located
 
-- $(System.DefaultWorkingDirectory)/_Hub and Spoke/drop/Tier1.AvailabilitySet/azuredeploy.parameters.json
+	$(System.DefaultWorkingDirectory)/_Hub and Spoke/drop/Tier1.AvailabilitySet/azuredeploy.parameters.json
 
 7) Override the availabilitySetName property with the name you want for the availability set
 
-![](/pics/asdeploy.jpg)
+![](./pics/asdeploy.jpg)
+

@@ -2,20 +2,11 @@
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "Frontend1-nicName": {
+    "nicName": {
       "type": "string",
       "minLength": 1
     },
-    "virtualNetworkId": {
-      "type": "string"
-    },
-    "dmzSubnetId": {
-      "type": "string"
-    },
-    "internalSubnetId": {
-      "type": "string"
-    },
-    "clusterSubnetId": {
+    "subnetId": {
       "type": "string"
     }
   },
@@ -23,13 +14,12 @@
     },
   "resources": [
     {
-      "name": "[parameters('Frontend1-nicName')]",
+      "name": "[parameters('nicName')]",
       "type": "Microsoft.Network/networkInterfaces",
-      "location": "eastus",
+      "location": "[resourceGroup().location]",
       "apiVersion": "2016-03-30",
       "dependsOn": [ ],
       "tags": {
-        "displayName": "Frontend1-nic"
       },
       "properties": {
         "ipConfigurations": [
@@ -38,7 +28,7 @@
             "properties": {
               "privateIPAllocationMethod": "Dynamic",
               "subnet": {
-                "id": "[parameters('dmzSubnetId')]"
+                "id": "[parameters('subnetId')]"
               }
             }
           }
@@ -47,5 +37,9 @@
     }
   ],
   "outputs": {
+    "nicResourceID": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.Network/networkInterfaces', parameters('nicName'))]"
+    }
   }
 }
