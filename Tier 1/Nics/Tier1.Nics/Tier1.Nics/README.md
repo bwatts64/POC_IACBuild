@@ -1,12 +1,12 @@
 # Tier 1 NICS
 This template deploys a Network Interface to a Resource Group in Azure. This template is usually deployed before and used in the below templates:
 
-    [VM](/Tier 2/Virtual Machines/Tier2.VM/readme.md)
-    [VM in Availability Set](/Tier 2/Virtual Machines/Tier2.VMinAvailabilitySet/readme.md)
+    [VM] (/Tier 2/Virtual Machines/Tier2.VM/readme.md)
+    [VM in Availability Set] (/Tier 2/Virtual Machines/Tier2.VMinAvailabilitySet/readme.md)
 
 The deployment of this template is dependant of the following Network templates being deployed first
-- [HubVnet](/Tier 1/VNets/Tier1.HubVNET/readme.md)
-- [Vnet](/Tier 1/VNets/Tier1.VNET/readme.md)
+- [HubVnet] (/Tier 1/VNets/Tier1.HubVNET/readme.md)
+- [Vnet] (/Tier 1/VNets/Tier1.VNET/readme.md)
 
 ## Required Inputs
 In order to execute this template you must provide the following information.  
