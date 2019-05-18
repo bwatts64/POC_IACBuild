@@ -31,4 +31,4 @@ This template will output the following information to be used by other template
 
 7) Override the availabilitySetName property with the name you want for the availability set
 
-![](/pics/asdeploy.jpg)
+![](./pics/asdeploy.jpg)
