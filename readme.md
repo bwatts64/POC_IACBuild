@@ -19,9 +19,14 @@ This Repository is made up of Azure ARM Templates and Azure PowerShell scripts.
 
 - Tier 2 ARM Templates
 	> [VMs in Availability Set]("https://dev.azure.com/Security-Monitoring/_git/IaC_HubSpokeNetwork?path=%2FTier%202%2FVirtual%20Machines%2FTier2.VMinAvailabilitySet%2FREADME.md&version=GBmaster")  
+	> [Standalone VMs]("https://dev.azure.com/Security-Monitoring/_git/IaC_HubSpokeNetwork?path=%2FTier%202%2FVirtual%20Machines%2FTier2.VMsStandalone%2FTier2.VMsStandalone%2FREADME.md&version=GBmaster")  
 	> [Public Load Balancer]("https://dev.azure.com/Security-Monitoring/_git/IaC_HubSpokeNetwork?path=%2FTier%202%2FLoad%20Balancers%2FPublic%20Load%20Balancer%2FPublic%20Load%20Balancer%2FREADME.md&version=GBmaster")  
 
 ## Scripts in this Repository  
 - Network Scripts
 	> [NSG Add Inbound Security Rule]("https://dev.azure.com/Security-Monitoring/_git/IaC_HubSpokeNetwork?path=%2FScripts%2Freadme_nsginboundrule.md&version=GBmaster")  
- 	> [Load Balancer add Availability Set to Backend Pool]("https://dev.azure.com/Security-Monitoring/_git/IaC_HubSpokeNetwork?path=%2FScripts%2Freadme_lbAvailabilitySetBackEndPool.md&version=GBmaster")
+ 	> [Load Balancer add Availability Set to Backend Pool]("https://dev.azure.com/Security-Monitoring/_git/IaC_HubSpokeNetwork?path=%2FScripts%2Freadme_lbAvailabilitySetBackEndPool.md&version=GBmaster")  
+ 	> [Load Balancer add Public IP Frontend Config]("https://dev.azure.com/Security-Monitoring/_git/IaC_HubSpokeNetwork?path=%2FScripts%2Freadme_lbaddpublicipFrontendConfig.md&version=GBmaster")  
+ 	> [Load Balancer add Health Probe]("https://dev.azure.com/Security-Monitoring/_git/IaC_HubSpokeNetwork?path=%2FScripts%2Freadme_lbHealthProbe.md&version=GBmaster")  
+ 	> [Load Balancer add Load Balancing Rule]("https://dev.azure.com/Security-Monitoring/_git/IaC_HubSpokeNetwork?path=%2FScripts%2Freadme_lbLoadBalancingRule.md&version=GBmaster")  
+ 	> [Load Balancer add NAT Rule]("https://dev.azure.com/Security-Monitoring/_git/IaC_HubSpokeNetwork?path=%2FScripts%2Freadme_lbNatRule.md&version=GBmaster")  
