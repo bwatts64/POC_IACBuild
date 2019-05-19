@@ -3,7 +3,7 @@ This template deploys a Public IP to a Resource Group in Azure.
 
 This template is usually deployed before and used in the below templates:
 
-[Public Load Balancer]("https://dev.azure.com/Security-Monitoring/_git/IaC_HubSpokeNetwork?path=%2FTier%202%2FLoad%20Balancers%2FPublic%20Load%20Balancer%2FPublic%20Load%20Balancer%2FREADME.md&version=GBmaster")
+<a href="https://dev.azure.com/Security-Monitoring/_git/IaC_HubSpokeNetwork?path=%2FTier%202%2FLoad%20Balancers%2FPublic%20Load%20Balancer%2FPublic%20Load%20Balancer%2FREADME.md&version=GBmaster">Public Load Balancer</a>
 
 The deployment of this template is not dependent on any other templates.
 

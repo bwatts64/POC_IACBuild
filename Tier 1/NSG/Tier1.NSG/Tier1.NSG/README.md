@@ -3,12 +3,12 @@ This template deploys a Network Security Group to a Resource Group in Azure.
 
 This template is usually deployed before and used in the below template:
 
-> [Hub VNet]("https://dev.azure.com/Security-Monitoring/_git/IaC_HubSpokeNetwork?path=%2FTier%201%2FVNets%2FTier1.HubVNET&version=GBmaster")  
-> [VNet]("https://dev.azure.com/Security-Monitoring/_git/IaC_HubSpokeNetwork?path=%2FTier%201%2FVNets%2FTier1.VNET%2FREADME.md&version=GBmaster")
+> <a href="https://dev.azure.com/Security-Monitoring/_git/IaC_HubSpokeNetwork?path=%2FTier%201%2FVNets%2FTier1.HubVNET&version=GBmaster">Hub Virtual Network</a>  
+> <a href="https://dev.azure.com/Security-Monitoring/_git/IaC_HubSpokeNetwork?path=%2FTier%201%2FVNets%2FTier1.VNET%2FREADME.md&version=GBmaster">Virtual Network</a>
 
 This template is usually deployed before and used in the below script:
 
-[Inbound Security Rule Script](https://dev.azure.com/Security-Monitoring/_git/IaC_HubSpokeNetwork?path=%2FScripts%2Freadme_nsginboundrule.md&version=GBmaster)
+> <a href="https://dev.azure.com/Security-Monitoring/_git/IaC_HubSpokeNetwork?path=%2FScripts%2Freadme_nsginboundrule.md&version=GBmaster">Inbound Security Rule Script</a>
 
 The deployment of this template is not dependent on any other templates.
 

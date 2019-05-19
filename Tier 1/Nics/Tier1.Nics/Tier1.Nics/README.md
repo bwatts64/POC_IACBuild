@@ -1,13 +1,12 @@
 # Tier 1 NICS
 This template deploys a Network Interface to a Resource Group in Azure. This template is usually deployed before and used in the below templates:
 
-[VM in Availability Set](https://dev.azure.com/Security-Monitoring/_git/IaC_HubSpokeNetwork?path=%2FTier%202%2FVirtual%20Machines%2FTier2.VMinAvailabilitySet%2FREADME.md&version=GBmaster)
+<a href="https://dev.azure.com/Security-Monitoring/_git/IaC_HubSpokeNetwork?path=%2FTier%202%2FVirtual%20Machines%2FTier2.VMinAvailabilitySet%2FREADME.md&version=GBmaster">VM in Availabilit Set</a>
 
 The deployment of this template is dependant of the following Network templates being deployed first
 
-[HubVnet] (/Tier 1/VNets/Tier1.HubVNET/readme.md)
-
-[Vnet] (/Tier 1/VNets/Tier1.VNET/readme.md)
+<a href="https://dev.azure.com/Security-Monitoring/_git/IaC_HubSpokeNetwork?path=%2FTier%201%2FVNets%2FTier1.HubVNET%2FREADME.md&version=GBmaster">Hub Virtual Network</a>  
+<a href="https://dev.azure.com/Security-Monitoring/_git/IaC_HubSpokeNetwork?path=%2FTier%201%2FVNets%2FTier1.VNET%2FREADME.md&version=GBmaster">Virtual Network</a>  
 
 ## Required Inputs
 In order to execute this template you must provide the following information.  

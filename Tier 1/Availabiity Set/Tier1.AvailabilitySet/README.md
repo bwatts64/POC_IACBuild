@@ -3,7 +3,7 @@ This template deploys an Availability Set to a Resource Group in Azure.
 
 This template is usually deployed before and used in the below templates:
 
-[VM in Availability Set](https://dev.azure.com/Security-Monitoring/_git/IaC_HubSpokeNetwork?path=%2FTier%202%2FVirtual%20Machines%2FTier2.VMinAvailabilitySet%2FREADME.md&version=GBmaster)
+<a href="https://dev.azure.com/Security-Monitoring/_git/IaC_HubSpokeNetwork?path=%2FTier%202%2FVirtual%20Machines%2FTier2.VMinAvailabilitySet%2FREADME.md&version=GBmaster">VM in Availability Set</a>
 
 The deployment of this template is not dependent on any other templates.
 
