@@ -1,5 +1,11 @@
 # Tier 1 Availability Set
-This template deploys an Availability Set to a Resource Group in Azure.
+This template deploys an Availability Set to a Resource Group in Azure.  
+
+This template is usually deployed before and used in the below templates:
+
+[VM in Availability Set](https://dev.azure.com/Security-Monitoring/_git/IaC_HubSpokeNetwork?path=%2FTier%202%2FVirtual%20Machines%2FTier2.VMinAvailabilitySet%2FREADME.md&version=GBmaster)
+
+The deployment of this template is not dependent on any other templates.
 
 ## Required Inputs
 In order to execute this template you must provide the following information.  
@@ -32,7 +38,4 @@ This template will output the following information to be used by other template
 7) Override the availabilitySetName property with the name you want for the availability set
 
 ![](./pics/asdeploy.jpg)
-<<<<<<< HEAD
 
-=======
->>>>>>> ff76715411a3c983ae5bd0f020d0f4b6553fd371
