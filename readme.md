@@ -7,8 +7,9 @@ This Repository is made up of Azure ARM Templates and Azure PowerShell scripts.
 
 ## Templates in this Repository
 
-- Tier 1 ARM Templates
-	> [Network Interface]("./Tier 1/Nics/Tier1.Nics/Tier1.Nics/README.md")  
+- Tier 1 ARM Templates  
+
+	> <a href="https://dev.azure.com/Security-Monitoring/_git/IaC_HubSpokeNetwork?path=%2FTier%201%2FNics%2FTier1.Nics%2FTier1.Nics%2FREADME.md&version=GBmaster&_a=contents">Network Interface</a>  
 	> [Availability Set]("https://dev.azure.com/Security-Monitoring/_git/IaC_HubSpokeNetwork?path=%2FTier%201%2FAvailabiity%20Set%2FTier1.AvailabilitySet%2FREADME.md&version=GBmaster")  
 	> [Network Security Group]("https://dev.azure.com/Security-Monitoring/_git/IaC_HubSpokeNetwork?path=%2FTier%201%2FNSG%2FTier1.NSG%2FTier1.NSG%2FREADME.md&version=GBmaster")  
 	> [Public IP]("https://dev.azure.com/Security-Monitoring/_git/IaC_HubSpokeNetwork?path=%2FTier%201%2FPublic%20IP%2FPublicIP%2FPublicIP%2FREADME.md&version=GBmaster")  
