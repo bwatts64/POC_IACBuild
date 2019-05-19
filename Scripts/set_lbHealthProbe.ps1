@@ -19,9 +19,7 @@
 
 $slb = Get-AzLoadBalancer -Name $LBName -ResourceGroupName $RGName
 
-#$healthProbe = New-AzLoadBalancerProbeConfig -Name $ProbeName -RequestPath $RequestPath -Protocol $protocol -Port $Port -IntervalInSeconds $IntervalSeconds -ProbeCount $ProbeCount
 if($RequestPath -ne '') {
-    Write-Host "A"
     $slb | Add-AzLoadBalancerProbeConfig -Name $ProbeName -Protocol $protocol -Port $Port -IntervalInSeconds $IntervalSeconds -ProbeCount $ProbeCount -RequestPath $RequestPath 
 }
 else {
