@@ -50,6 +50,10 @@
     }
   ],
   "outputs": {
+    "name": {
+      "type": "string",
+      "value": "[parameters('publicIPAddressName')]"
+    },
     "PIPResourceID": {
       "type": "string",
       "value": "[resourceId(resourceGroup().name,'Microsoft.Network/publicIPAddresses',parameters('publicIPAddressName'))]"

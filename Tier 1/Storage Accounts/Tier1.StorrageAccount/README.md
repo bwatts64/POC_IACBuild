@@ -36,4 +36,4 @@ This template will output the following information to be used by other template
 
 7) Override the Public IP Address properties with the appropriate values
 
-![](./pics/sadeploy.jpg)
+![](./pics/sadeploy.jpeg)
