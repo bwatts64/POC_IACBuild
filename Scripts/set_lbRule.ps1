@@ -21,6 +21,8 @@
     [string]$healthProbeName
 )
 
+Start-Sleep -Seconds 60
+
 $slb = Get-AzLoadBalancer -Name $LBName -ResourceGroupName $RGName
 
 $frontEndConfig = Get-AzLoadBalancerFrontendIpConfig -LoadBalancer $slb -Name $frontEndConfigName
@@ -33,4 +35,5 @@ if($EnableFloatingIP -eq $true) {
 else {
     $slb | Add-AzLoadBalancerRuleConfig -Name $RuleName -Protocol $protocol -FrontendPort $frontEndPort -BackendPort $backEndPort -FrontendIpConfiguration $frontEndConfig -BackendAddressPool $slb.BackendAddressPools[0] -Probe $healthProbe
 }
-$slb | Set-AzLoadBalancer
+$slb | Set-AzLoadBalancer -AsJob
+
