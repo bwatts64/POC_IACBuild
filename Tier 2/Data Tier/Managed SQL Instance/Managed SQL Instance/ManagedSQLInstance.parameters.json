@@ -21,10 +21,10 @@
       "value": "GeneralPurpose"
     },
     "storageSizeInGB": {
-      "value": "32"
+      "value": 32
     },
     "vCores": {
-      "value": "16"
+      "value": 16
     },
     "licenseType": {
       "value": "LicenseIncluded"
