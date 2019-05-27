@@ -18,6 +18,7 @@
     [Parameter(Mandatory = $True)]
     [bool]$EnableFloatingIP
 )
+Start-Sleep -Seconds 15
 
 $slb = Get-AzLoadBalancer -Name $LBName -ResourceGroupName $RGName
 $frontEndConfig = Get-AzLoadBalancerFrontendIpConfig -LoadBalancer $slb -Name $frontEndConfigName
@@ -39,7 +40,7 @@ foreach($FrontEndPort in $FrontEndPorts) {
     $nic.IpConfigurations[0].LoadBalancerInboundNatRules = $slb.InboundNatRules[$i-1]
     Set-AzNetworkInterface -NetworkInterface $nic
     $i++
-    Start-Sleep -Seconds 15
+    Start-Sleep -Seconds 60
     $slb = Get-AzLoadBalancer -Name $LBName -ResourceGroupName $RGName
 }
 
