@@ -35,7 +35,7 @@ foreach($FrontEndPort in $FrontEndPorts) {
     $slb | Set-AzLoadBalancer
     $slb = Get-AzLoadBalancer -Name $LBName -ResourceGroupName $RGName
 
-    $nic = Get-AzNetworkInterface | Where-Object {($_.VirtualMachine.id).ToLower() -eq ($avSet.VirtualMachinesReferences.id[$i-1]).ToLower()}
+    $nic = Get-AzNetworkInterface | Where-Object {($_.VirtualMachine -ne $null) -and ($_.VirtualMachine.id).ToLower() -eq ($avSet.VirtualMachinesReferences.id[$i-1]).ToLower()}
     $nic.IpConfigurations[0].LoadBalancerInboundNatRules = $slb.InboundNatRules[$i-1]
     Set-AzNetworkInterface -NetworkInterface $nic
     $i++
