@@ -17,6 +17,7 @@ Param(
     [string]$resourceGroupName
 )
 
+Start-Sleep -Seconds 60
 $ErrorActionPreference = "Stop"
 
 Try {
