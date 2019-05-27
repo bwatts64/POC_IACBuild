@@ -2919,7 +2919,7 @@
         }
       ]
     },
-    "routesUnion": "[if(contains(variables('locations'), tolower(parameters('location'))), union(variables('routesNIP'), variables('routesJumpboxes'), variables('routesSAW'), variables('routesRunners'), variables('routesDSMS'), variables(parameters('location')).controlPlane, variables(parameters('location')).controlPlane_SqlManagementTag, variables(parameters('location')).runners, variables(parameters('location')).DSMS), union(variables('routesNIP'), variables('routesJumpboxes'), variables('routesSAW'), variables('routesRunners')))]",
+    "routesUnion": "[if(contains(variables('locations'), tolower(resourceGroup().location)), union(variables('routesNIP'), variables('routesJumpboxes'), variables('routesSAW'), variables('routesRunners'), variables('routesDSMS'), variables(resourceGroup().location).controlPlane, variables(resourceGroup().location).controlPlane_SqlManagementTag, variables(resourceGroup().location).runners, variables(resourceGroup().location).DSMS), union(variables('routesNIP'), variables('routesJumpboxes'), variables('routesSAW'), variables('routesRunners')))]",
     "defaultNSGs": [
       {
         "name": "allow_management_inbound",
@@ -3037,7 +3037,7 @@
             "12000"
           ],
           "sourceAddressPrefix": "*",
-          "destinationAddressPrefix": "[if(contains(variables('locations'), tolower(parameters('location'))), '*', '*')]",
+          "destinationAddressPrefix": "[if(contains(variables('locations'), tolower(resourceGroup().location)), '*', '*')]",
           "access": "Allow",
           "priority": 100,
           "direction": "Outbound"
@@ -3169,7 +3169,7 @@
       "type": "Microsoft.Network/routeTables",
       "apiVersion": "2018-02-01",
       "name": "[variables('routeTableName')]",
-      "location": "[parameters('location')]",
+      "location": "[resourceGroup().location]",
       "properties": {
         "disableBgpRoutePropagation": false,
         "copy": [
