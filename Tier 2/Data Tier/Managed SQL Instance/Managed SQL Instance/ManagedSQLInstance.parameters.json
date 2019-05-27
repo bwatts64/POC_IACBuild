@@ -2,5 +2,53 @@
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
+    "administratorLogin": {
+      "value": "sqladmin"
+    },
+    "administratorLoginPassword": {
+      "value": "15CharacterPwd"
+    },
+    "subnetId": {
+      "value": "na"
+    },
+    "managedInstanceName": {
+      "value": "SQLInstanceName"
+    },
+    "skuName": {
+      "value": "GP_Gen4"
+    },
+    "skuEdition": {
+      "value": "GeneralPurpose"
+    },
+    "storageSizeInGB": {
+      "value": "32"
+    },
+    "vCores": {
+      "value": "16"
+    },
+    "licenseType": {
+      "value": "LicenseIncluded"
+    },
+    "hardwareFamily": {
+      "value": "Gen4"
+    },
+    "dnsZonePartner": {
+      "value": ""
+    },
+    "collation": {
+      "value": "SQL_Latin1_General_CP1_CI_AS"
+    },
+    "proxyOverride": {
+      "value": ""
+    },
+    "publicDataEndpointEnabled": {
+      "value": false
+    },
+    "timezoneId": {
+      "value": "UTC"
+    },
+    "nsgForPublicEndpoint": {
+      "value": ""
+    }
   }
 }

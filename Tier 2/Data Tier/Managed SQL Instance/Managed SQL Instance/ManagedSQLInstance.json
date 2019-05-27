@@ -3,24 +3,24 @@
   "contentVersion": "1.0.0.1",
   "parameters": {
     "administratorLogin": {
-      "type": "String"
+      "type": "string"
     },
     "administratorLoginPassword": {
-      "type": "SecureString"
+      "type": "securestring"
     },
-    "location": {
-      "type": "String"
+    "subnetId": {
+      "type": "string"
     },
     "managedInstanceName": {
-      "type": "String"
+      "type": "string"
     },
     "skuName": {
       "defaultValue": "GP_Gen4",
-      "type": "String"
+      "type": "string"
     },
     "skuEdition": {
       "defaultValue": "GeneralPurpose",
-      "type": "String"
+      "type": "string"
     },
     "storageSizeInGB": {
       "defaultValue": "32",
@@ -32,39 +32,42 @@
     },
     "licenseType": {
       "defaultValue": "LicenseIncluded",
-      "type": "String"
+      "type": "string"
     },
     "hardwareFamily": {
       "defaultValue": "Gen4",
-      "type": "String"
+      "type": "string"
     },
     "dnsZonePartner": {
       "defaultValue": "",
-      "type": "String"
+      "type": "string"
     },
     "collation": {
       "defaultValue": "SQL_Latin1_General_CP1_CI_AS",
-      "type": "String"
+      "type": "string"
     },
     "proxyOverride": {
       "defaultValue": "",
-      "type": "String"
+      "type": "string"
     },
     "publicDataEndpointEnabled": {
       "defaultValue": false,
-      "type": "Bool"
+      "type": "bool",
+      "allowedValues": [
+        true,
+        false
+      ]
     },
     "timezoneId": {
       "defaultValue": "UTC",
-      "type": "String"
+      "type": "string"
     },
     "nsgForPublicEndpoint": {
       "defaultValue": "",
-      "type": "String"
+      "type": "string"
     }
   },
   "variables": {
-    "virtualNetworkName": "[concat('vnet-', parameters('managedInstanceName'))]",
     "routeTableName": "[concat('rt-', parameters('managedInstanceName'))]",
     "networkSecurityGroupName": "[concat('nsg-', parameters('managedInstanceName'))]",
     "addressPrefix": "10.0.0.0/16",
@@ -3163,24 +3166,6 @@
   },
   "resources": [
     {
-      "type": "Microsoft.Network/networkSecurityGroups",
-      "apiVersion": "2017-10-01",
-      "name": "[variables('networkSecurityGroupName')]",
-      "location": "[parameters('location')]",
-      "properties": {
-        "copy": [
-          {
-            "name": "securityRules",
-            "count": "[length(variables('unionNSGs'))]",
-            "input": {
-              "name": "[variables('unionNSGs')[copyIndex('securityRules')].name]",
-              "properties": "[variables('unionNSGs')[copyIndex('securityRules')].properties]"
-            }
-          }
-        ]
-      }
-    },
-    {
       "type": "Microsoft.Network/routeTables",
       "apiVersion": "2018-02-01",
       "name": "[variables('routeTableName')]",
@@ -3200,43 +3185,12 @@
       }
     },
     {
-      "type": "Microsoft.Network/virtualNetworks",
-      "apiVersion": "2018-02-01",
-      "name": "[variables('virtualNetworkName')]",
-      "location": "[parameters('location')]",
-      "dependsOn": [
-        "[variables('routeTableName')]",
-        "[variables('networkSecurityGroupName')]"
-      ],
-      "properties": {
-        "addressSpace": {
-          "addressPrefixes": [
-            "[variables('addressPrefix')]"
-          ]
-        },
-        "subnets": [
-          {
-            "name": "[variables('subnetName')]",
-            "properties": {
-              "addressPrefix": "[variables('subnetPrefix')]",
-              "routeTable": {
-                "id": "[resourceId('Microsoft.Network/routeTables', variables('routeTableName'))]"
-              },
-              "networkSecurityGroup": {
-                "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroupName'))]"
-              }
-            }
-          }
-        ]
-      }
-    },
-    {
       "type": "Microsoft.Sql/managedInstances",
       "apiVersion": "2015-05-01-preview",
       "name": "[parameters('managedInstanceName')]",
-      "location": "[parameters('location')]",
+      "location": "[resourceGroup().location]",
       "dependsOn": [
-        "[variables('virtualNetworkName')]"
+       
       ],
       "sku": {
         "name": "[parameters('skuName')]",
@@ -3248,7 +3202,7 @@
       "properties": {
         "administratorLogin": "[parameters('administratorLogin')]",
         "administratorLoginPassword": "[parameters('administratorLoginPassword')]",
-        "subnetId": "[concat(resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName')),'/subnets/', variables('subnetName'))]",
+        "subnetId": "[parameters('subnetId')]",
         "storageSizeInGB": "[parameters('storageSizeInGB')]",
         "vCores": "[parameters('vCores')]",
         "licenseType": "[parameters('licenseType')]",

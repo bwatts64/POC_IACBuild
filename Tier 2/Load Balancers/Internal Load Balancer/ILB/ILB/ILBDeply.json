@@ -1,0 +1,70 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "LBName": {
+      "type": "string"
+    },
+    "sku": {
+      "type": "string",
+      "allowedValues": [
+        "Basic",
+        "Standard"
+      ]
+    },
+    "privateIPAddress": {
+      "type": "string"
+    },
+    "subnetID": {
+      "type": "string"
+    },
+    "backendAddressPoolName": {
+      "type": "string"
+    }
+  },
+  "variables": {
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Network/loadBalancers",
+      "apiVersion": "2018-08-01",
+      "name": "[parameters('LBName')]",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [
+      ],
+      "tags": {},
+      "sku": {
+        "name": "[parameters('sku')]"
+      },
+      "properties": {
+        "frontendIPConfigurations": [
+          {
+            "name": "LoadBalancerFrontEnd",
+            "properties": {
+              "privateIPAddress": "[parameters('privateIPAddress')]",
+              "privateIPAllocationMethod": "Static",
+              "subnet": {
+                "id": "[parameters('subnetID']"
+              }
+            }
+          }
+        ],
+        "backendAddressPools": [
+          {
+            "name": "[parameters('backendAddressPoolName')]"
+          }
+        ]
+      }
+    }
+  ],
+  "outputs": {
+    "name": {
+      "type": "string",
+      "value": "[parameters('LBName')]"
+    },
+    "backendAddressPoolName": {
+      "type": "string",
+      "value": "[parameters('backendAddressPoolName')]"
+    }
+  }
+}

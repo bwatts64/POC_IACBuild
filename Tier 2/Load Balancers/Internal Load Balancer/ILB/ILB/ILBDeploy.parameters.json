@@ -1,0 +1,21 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "LBName": {
+      "value": "test-lb"
+    },
+    "sku": {
+      "value": "Basic"
+    },
+    "subnetID": {
+      "value": "/subscriptions/<sub>/resourceGroups/IaC_HubSpoke/providers/Microsoft.Network/subnet/example_PIP"
+    },
+    "privateIPAddress": {
+      "value": "10.10.10.10"
+    },
+    "backendAddressPoolName": {
+      "value": "BackendAddressPool"
+    }
+  }
+}
