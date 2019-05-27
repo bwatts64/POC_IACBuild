@@ -17,7 +17,6 @@ Param(
     [string]$resourceGroupName
 )
 
-Start-Sleep -Seconds 60
 $ErrorActionPreference = "Stop"
 
 Try {
@@ -53,7 +52,7 @@ catch {
 
 ForEach ($id in $avSet.VirtualMachinesReferences.id) {
 
-    $nic = Get-AzNetworkInterface | Where-Object {($_.VirtualMachine.id).ToLower() -eq ($id).ToLower()}
+    $nic = Get-AzNetworkInterface -ResourceGroupName $resourceGroupName | Where-Object {($_.VirtualMachine -ne $null) -and ($_.VirtualMachine.id).ToLower() -eq ($id).ToLower()}
     $nic.IpConfigurations[0].LoadBalancerBackendAddressPools = $backendPool
     Write-Host $nic.IpConfigurations[0]
     Set-AzNetworkInterface -NetworkInterface $nic -AsJob 
