@@ -44,7 +44,7 @@
               "privateIPAddress": "[parameters('privateIPAddress')]",
               "privateIPAllocationMethod": "Static",
               "subnet": {
-                "id": "[parameters('subnetID']"
+                "id": "[parameters('subnetID')]"
               }
             }
           }
