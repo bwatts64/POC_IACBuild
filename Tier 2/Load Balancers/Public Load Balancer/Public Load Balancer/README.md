@@ -12,6 +12,19 @@ This template is typically deployed after and used the output from the following
 <a href="https://security-monitoring.visualstudio.com/_git/IaC_HubSpokeNetwork?path=%2FTier%201%2FPublic%20IP%2FPublicIP%2FPublicIP%2FREADME.md&version=GBmaster">Public IP</a>  
 <a href="https://security-monitoring.visualstudio.com/_git/IaC_HubSpokeNetwork?path=%2FTier%201%2FAvailabiity%20Set%2FTier1.AvailabilitySet%2FREADME.md&version=GBmaster">Availabiity Set</a>  
 
+## Providsioning Process Example
+When deploying a Public Load balancer you will typically do the following:  
+1) Deploy Public Load Balancer Template  
+2) Create a Probe with the <a href="https://security-monitoring.visualstudio.com/_git/IaC_HubSpokeNetwork?path=%2FScripts%2Freadme_lbHealthProbe.md&version=GBmaster">Probe Script</a>   
+3) Add an Availability Set to the backend probe using <a href="https://security-monitoring.visualstudio.com/_git/IaC_HubSpokeNetwork?path=%2FScripts%2Freadme_lbAvailabilitySetBackEndPool.md&version=GBmaster">Availability Set Backend Pool Script</a>  
+4) Add an Load Balancing Rule using <a href="https://security-monitoring.visualstudio.com/_git/IaC_HubSpokeNetwork?path=%2FScripts%2Freadme_lbLoadBalancingRule.md&version=GBmaster">Load Balancing Rule Script</a>  
+
+### Optional Configuration
+If you want to add a NAT rule to connect to specific backend servers then you would also do the following steps:  
+1)  Add a Public IP to be used for the NAT Rule using the <a href="https://security-monitoring.visualstudio.com/_git/IaC_HubSpokeNetwork?path=%2FTier%201%2FPublic%20IP%2FPublicIP%2FPublicIP%2FREADME.md&version=GBmaster">Public IP Template</a>  
+2) Configure an additonal Load Balancer PIP Frontend using the <a href="https://security-monitoring.visualstudio.com/_git/IaC_HubSpokeNetwork?path=%2FScripts%2Freadme_lbaddpublicipFrontendConfig.md&version=GBmaster">Frontend Config script</a>  
+3) Add a Load Balancer NAT Rule using the <a href="https://security-monitoring.visualstudio.com/_git/IaC_HubSpokeNetwork?path=%2FScripts%2Freadme_lbNatRule.md&version=GBmaster">NAT Rule script</a> 
+
 ## Required Inputs
 In order to execute this template you must provide the following information.  
 

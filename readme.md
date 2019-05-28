@@ -22,6 +22,7 @@ This Repository is made up of Azure ARM Templates and Azure PowerShell scripts.
 	> <a href="https://dev.azure.com/Security-Monitoring/_git/IaC_HubSpokeNetwork?path=%2FTier%202%2FVirtual%20Machines%2FTier2.VMinAvailabilitySet%2FREADME.md&version=GBmaster">VMs in Availability Set</a>  
 	> <a href="https://dev.azure.com/Security-Monitoring/_git/IaC_HubSpokeNetwork?path=%2FTier%202%2FVirtual%20Machines%2FTier2.VMsStandalone%2FTier2.VMsStandalone%2FREADME.md&version=GBmaster">Standalone VMs</a>  
 	> <a href="https://dev.azure.com/Security-Monitoring/_git/IaC_HubSpokeNetwork?path=%2FTier%202%2FLoad%20Balancers%2FPublic%20Load%20Balancer%2FPublic%20Load%20Balancer%2FREADME.md&version=GBmaster">Public Load Balancer</a>  
+	> <a href="https://dev.azure.com/Security-Monitoring/_git/IaC_HubSpokeNetwork?path=%2FTier%202%2FLoad%20Balancers%2FInternal%20Load%20Balancer%2FILB%2FILB%2FREADME.md&version=GBmaster">Internal Load Balancer</a>
 
 ## Scripts in this Repository  
 - Network Scripts
