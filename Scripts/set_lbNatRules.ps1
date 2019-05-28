@@ -21,26 +21,33 @@
 Start-Sleep -Seconds 15
 
 $slb = Get-AzLoadBalancer -Name $LBName -ResourceGroupName $RGName
+
 $frontEndConfig = Get-AzLoadBalancerFrontendIpConfig -LoadBalancer $slb -Name $frontEndConfigName
 [array]$FrontEndPorts = $FrontEndPorts -split ","
 $i=1
 
 $avSet = Get-AzAvailabilitySet -Name $avSetName -ResourceGroupName $RGName
 foreach($FrontEndPort in $FrontEndPorts) {
-    if($EnableFloatingIP) {
-        $slb | Add-AzLoadBalancerInboundNatRuleConfig -Name "$NatNamePrefix-$i" -FrontendIpConfiguration $frontEndConfig -FrontendPort $FrontEndPort  -BackendPort $BackEndPort -Protocol $protocol -EnableFloatingIP
+    try{
+        Get-AzLoadBalancerInboundNatPoolConfig -LoadBalancer $slb -Name "$NatNamePrefix-$i"
+        Write-Warning "A NAT rule with the name $NatNamePrefix-$i already exist on $lbname" 
     }
-    else {
-        $slb | Add-AzLoadBalancerInboundNatRuleConfig -Name "$NatNamePrefix-$i" -FrontendIpConfiguration $frontEndConfig -FrontendPort $FrontEndPort  -BackendPort $BackEndPort -Protocol $protocol
-    }
-    $slb | Set-AzLoadBalancer
-    $slb = Get-AzLoadBalancer -Name $LBName -ResourceGroupName $RGName
+    catch {
+        if($EnableFloatingIP) {
+            $slb | Add-AzLoadBalancerInboundNatRuleConfig -Name "$NatNamePrefix-$i" -FrontendIpConfiguration $frontEndConfig -FrontendPort $FrontEndPort  -BackendPort $BackEndPort -Protocol $protocol -EnableFloatingIP
+        }
+        else {
+            $slb | Add-AzLoadBalancerInboundNatRuleConfig -Name "$NatNamePrefix-$i" -FrontendIpConfiguration $frontEndConfig -FrontendPort $FrontEndPort  -BackendPort $BackEndPort -Protocol $protocol
+        }
+        $slb | Set-AzLoadBalancer
+        $slb = Get-AzLoadBalancer -Name $LBName -ResourceGroupName $RGName
 
-    $nic = Get-AzNetworkInterface | Where-Object {($_.VirtualMachine -ne $null) -and ($_.VirtualMachine.id).ToLower() -eq ($avSet.VirtualMachinesReferences.id[$i-1]).ToLower()}
-    $nic.IpConfigurations[0].LoadBalancerInboundNatRules = $slb.InboundNatRules[$i-1]
-    Set-AzNetworkInterface -NetworkInterface $nic
-    $i++
-    Start-Sleep -Seconds 60
-    $slb = Get-AzLoadBalancer -Name $LBName -ResourceGroupName $RGName
+        $nic = Get-AzNetworkInterface | Where-Object {($_.VirtualMachine -ne $null) -and ($_.VirtualMachine.id).ToLower() -eq ($avSet.VirtualMachinesReferences.id[$i-1]).ToLower()}
+        $nic.IpConfigurations[0].LoadBalancerInboundNatRules = $slb.InboundNatRules[$i-1]
+        Set-AzNetworkInterface -NetworkInterface $nic
+        $i++
+        Start-Sleep -Seconds 60
+        $slb = Get-AzLoadBalancer -Name $LBName -ResourceGroupName $RGName
+    }
 }
 

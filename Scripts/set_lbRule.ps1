@@ -25,15 +25,20 @@ Start-Sleep -Seconds 60
 
 $slb = Get-AzLoadBalancer -Name $LBName -ResourceGroupName $RGName
 
-$frontEndConfig = Get-AzLoadBalancerFrontendIpConfig -LoadBalancer $slb -Name $frontEndConfigName
-
-$healthProbe = Get-AzLoadBalancerProbeConfig -LoadBalancer $slb -Name $healthProbeName
-
-if($EnableFloatingIP -eq $true) {
-    $slb | Add-AzLoadBalancerRuleConfig -Name $RuleName -Protocol $protocol -FrontendPort $frontEndPort -BackendPort $backEndPort -FrontendIpConfiguration $frontEndConfig -BackendAddressPool $slb.BackendAddressPools[0] -Probe $healthProbe -EnableFloatingIP
+try{
+    Get-AzLoadBalancerRuleConfig -LoadBalancer $slb -Name $RuleName
+    Write-Warning "A rule already exist with the name $RuleName on $lbname"
 }
-else {
-    $slb | Add-AzLoadBalancerRuleConfig -Name $RuleName -Protocol $protocol -FrontendPort $frontEndPort -BackendPort $backEndPort -FrontendIpConfiguration $frontEndConfig -BackendAddressPool $slb.BackendAddressPools[0] -Probe $healthProbe
-}
-$slb | Set-AzLoadBalancer -AsJob
+catch {
+    $frontEndConfig = Get-AzLoadBalancerFrontendIpConfig -LoadBalancer $slb -Name $frontEndConfigName
 
+    $healthProbe = Get-AzLoadBalancerProbeConfig -LoadBalancer $slb -Name $healthProbeName
+
+    if($EnableFloatingIP -eq $true) {
+        $slb | Add-AzLoadBalancerRuleConfig -Name $RuleName -Protocol $protocol -FrontendPort $frontEndPort -BackendPort $backEndPort -FrontendIpConfiguration $frontEndConfig -BackendAddressPool $slb.BackendAddressPools[0] -Probe $healthProbe -EnableFloatingIP
+    }
+    else {
+        $slb | Add-AzLoadBalancerRuleConfig -Name $RuleName -Protocol $protocol -FrontendPort $frontEndPort -BackendPort $backEndPort -FrontendIpConfiguration $frontEndConfig -BackendAddressPool $slb.BackendAddressPools[0] -Probe $healthProbe
+    }
+    $slb | Set-AzLoadBalancer -AsJob
+}

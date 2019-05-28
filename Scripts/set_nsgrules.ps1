@@ -15,9 +15,15 @@
 
 $nsg = Get-AzNetworkSecurityGroup -Name $nsgName -ResourceGroupName $rgName
 
-$nsg | Add-AzNetworkSecurityRuleConfig -Name $ruleName -Description $ruleDescription `
-    -Access $access -Protocol $protocol -Direction $direction -Priority $priority -SourceAddressPrefix $sourceAddressPrefix `
-    -SourcePortRange $sourcePortRange -DestinationAddressPrefix $destinationPortRange -DestinationPortRange $destinationPortRange
+try {
+    Get-AzNetworkSecurityRuleConfig -Name $ruleName -NetworkSecurityGroup $nsg
+    Write-Warning "A rule with the name $ruleName already exists on $nsgName"
+}
+catch{
+    $nsg | Add-AzNetworkSecurityRuleConfig -Name $ruleName -Description $ruleDescription `
+        -Access $access -Protocol $protocol -Direction $direction -Priority $priority -SourceAddressPrefix $sourceAddressPrefix `
+        -SourcePortRange $sourcePortRange -DestinationAddressPrefix $destinationPortRange -DestinationPortRange $destinationPortRange
 
 
-$nsg | Set-AzNetworkSecurityGroup
+    $nsg | Set-AzNetworkSecurityGroup
+}
