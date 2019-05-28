@@ -87,9 +87,21 @@
       "type": "string",
       "value": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'), 'GatewaySubnet')]"
     },
+    "managementSubnetRange": {
+      "type": "string",
+      "value": "[parameters('managementSubnetRange')]"
+    },
     "workloadSubnetId": {
       "type": "string",
       "value": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'), parameters('workloadSubnetName'))]"
+    },
+    "workloadSubnetRange": {
+      "type": "string",
+      "value": "[parameters('workloadSubnetRange')]"
+    },
+    "virtualNetworkAddressRange": {
+      "type": "string",
+      "value": "[parameters('virtualNetworkAddressRange']"
     }
   }
 }
