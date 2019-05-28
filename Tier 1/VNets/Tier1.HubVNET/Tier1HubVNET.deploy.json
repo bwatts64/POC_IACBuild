@@ -101,7 +101,7 @@
     },
     "virtualNetworkAddressRange": {
       "type": "string",
-      "value": "[parameters('virtualNetworkAddressRange']"
+      "value": "[parameters('virtualNetworkAddressRange')]"
     }
   }
 }
