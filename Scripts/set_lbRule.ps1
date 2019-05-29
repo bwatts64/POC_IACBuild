@@ -21,7 +21,7 @@
     [string]$healthProbeName
 )
 
-Start-Sleep -Seconds 60
+Start-Sleep -Seconds 120
 
 $slb = Get-AzLoadBalancer -Name $LBName -ResourceGroupName $RGName
 

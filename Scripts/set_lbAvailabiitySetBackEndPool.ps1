@@ -56,7 +56,7 @@ ForEach ($id in $avSet.VirtualMachinesReferences.id) {
     $nic.IpConfigurations[0].LoadBalancerBackendAddressPools = $backendPool
     Write-Host $nic.IpConfigurations[0]
     Set-AzNetworkInterface -NetworkInterface $nic -AsJob 
-    Start-Sleep -Seconds 5   
+    Start-Sleep -Seconds 30   
 }    
 
 If ($ErrorMessages) {
