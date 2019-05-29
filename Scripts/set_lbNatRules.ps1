@@ -28,11 +28,6 @@ $i=1
 
 $avSet = Get-AzAvailabilitySet -Name $avSetName -ResourceGroupName $RGName
 foreach($FrontEndPort in $FrontEndPorts) {
-    try{
-        Get-AzLoadBalancerInboundNatPoolConfig -LoadBalancer $slb -Name "$NatNamePrefix-$i"
-        Write-Warning "A NAT rule with the name $NatNamePrefix-$i already exist on $lbname" 
-    }
-    catch {
         if($EnableFloatingIP) {
             $slb | Add-AzLoadBalancerInboundNatRuleConfig -Name "$NatNamePrefix-$i" -FrontendIpConfiguration $frontEndConfig -FrontendPort $FrontEndPort  -BackendPort $BackEndPort -Protocol $protocol -EnableFloatingIP
         }
@@ -49,5 +44,5 @@ foreach($FrontEndPort in $FrontEndPorts) {
         Start-Sleep -Seconds 60
         $slb = Get-AzLoadBalancer -Name $LBName -ResourceGroupName $RGName
     }
-}
+
 

@@ -19,11 +19,6 @@
 
 $slb = Get-AzLoadBalancer -Name $LBName -ResourceGroupName $RGName
 
-try{
-    Get-AzLoadBalancerProbeConfig -LoadBalancer $slb -Name $ProbeName
-    Write-Warning "A probe with name $ProbeName already exist on $lbname"
-}
-catch {
     if($RequestPath -ne '') {
         $slb | Add-AzLoadBalancerProbeConfig -Name $ProbeName -Protocol $protocol -Port $Port -IntervalInSeconds $IntervalSeconds -ProbeCount $ProbeCount -RequestPath $RequestPath 
     }
@@ -32,7 +27,7 @@ catch {
         $slb | Add-AzLoadBalancerProbeConfig -Name $ProbeName -Protocol $protocol -Port $Port -IntervalInSeconds $IntervalSeconds -ProbeCount $ProbeCount -RequestPath $null
     }
     $slb | Set-AzLoadBalancer
-}
+
 
 
 
