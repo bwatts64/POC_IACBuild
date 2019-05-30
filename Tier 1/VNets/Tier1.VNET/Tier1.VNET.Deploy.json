@@ -29,7 +29,7 @@
     "workloadSubnetRange": {
       "type": "string",
       "metadata": {
-        "description": "The address range of the subnet created in the new VNET"
+        "description": "The address ranges of the subnet created in the new VNET"
       },
       "defaultValue": "10.0.0.0/24"
     },
