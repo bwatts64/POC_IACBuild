@@ -18,7 +18,7 @@ $nsg = Get-AzNetworkSecurityGroup -Name $nsgName -ResourceGroupName $rgName
 
     $nsg | Add-AzNetworkSecurityRuleConfig -Name $ruleName -Description $ruleDescription `
         -Access $access -Protocol $protocol -Direction $direction -Priority $priority -SourceAddressPrefix $sourceAddressPrefix `
-        -SourcePortRange $sourcePortRange -DestinationAddressPrefix $destinationPortRange -DestinationPortRange $destinationPortRange
+        -SourcePortRange $sourcePortRange -DestinationAddressPrefix $destinationAddressPrefix -DestinationPortRange $destinationPortRange
 
 
     $nsg | Set-AzNetworkSecurityGroup
