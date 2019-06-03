@@ -25,7 +25,9 @@ Start-Sleep -Seconds 120
 
 $slb = Get-AzLoadBalancer -Name $LBName -ResourceGroupName $RGName
 
+$i=0
 
+while(((Get-AzLoadBalancer -Name $LBName -ResourceGroupName $RGName).count -eq 0) -and $i -lt 5 ) {
     $frontEndConfig = Get-AzLoadBalancerFrontendIpConfig -LoadBalancer $slb -Name $frontEndConfigName
 
     $healthProbe = Get-AzLoadBalancerProbeConfig -LoadBalancer $slb -Name $healthProbeName
@@ -36,5 +38,8 @@ $slb = Get-AzLoadBalancer -Name $LBName -ResourceGroupName $RGName
     else {
         $slb | Add-AzLoadBalancerRuleConfig -Name $RuleName -Protocol $protocol -FrontendPort $frontEndPort -BackendPort $backEndPort -FrontendIpConfiguration $frontEndConfig -BackendAddressPool $slb.BackendAddressPools[0] -Probe $healthProbe
     }
-    $slb | Set-AzLoadBalancer -AsJob
+    $slb | Set-AzLoadBalancer
 
+    Start-Sleep -Seconds 15
+    $i++
+}
