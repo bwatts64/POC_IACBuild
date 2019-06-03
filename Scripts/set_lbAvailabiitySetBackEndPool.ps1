@@ -56,7 +56,7 @@ ForEach ($id in $avSet.VirtualMachinesReferences.id) {
     
     $i=0
 
-    while(($i -lt 5) -and $nic.IpConfigurations[0].LoadBalancerBackendAddressPools -ne $backendPool) {
+    while($nic.IpConfigurations[0].LoadBalancerBackendAddressPools -ne $backendPool) {
         $nic.IpConfigurations[0].LoadBalancerBackendAddressPools = $backendPool
         start-sleep -Seconds 10
         $i++

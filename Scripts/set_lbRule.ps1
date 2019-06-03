@@ -27,7 +27,7 @@ $slb = Get-AzLoadBalancer -Name $LBName -ResourceGroupName $RGName
 
 $i=0
 
-while(((Get-AzLoadBalancer -Name $LBName -ResourceGroupName $RGName).count -eq 0) -and $i -lt 5 ) {
+while((Get-AzLoadBalancer -Name $LBName -ResourceGroupName $RGName).count -eq 0) {
     $frontEndConfig = Get-AzLoadBalancerFrontendIpConfig -LoadBalancer $slb -Name $frontEndConfigName
 
     $healthProbe = Get-AzLoadBalancerProbeConfig -LoadBalancer $slb -Name $healthProbeName
